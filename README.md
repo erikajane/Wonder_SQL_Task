@@ -78,7 +78,11 @@ There are 71 diffrent analysts recorded in the Assignment Log data table.
 
 First to determine what was the quality of each analyst I had to determine if each analyst had multiple scores for Quality_scoure_sourcing and multiple scores for Quality_score_writing.
 
-8 of the analysts have more than one score for Quality_score_sourcing and 
+8 of the analysts have more than one score for Quality_score_sourcing and Quality_score_writing. This lets us know that these values can change. 
+
+Another thing to note, on each row, Quality_score_sourcing is equivalent to the Quality_score_writing.
+
+The average quality of all analysts in the data table is 3.089.
 
 
 ### Analysts & Jobs
@@ -112,10 +116,100 @@ More analysts need to be editing than planning and vetting. More writing should 
 
 ### Requests
 
+# Part 2: Data Modeling
+
+## Assuming we are starting with the data set from Part 1 as our raw data table, how would you model this data in a data warehouse for analytical purposes? What tables would you create? What kinds of questions do you imagine business users would want to ask of this data, and how would they express them in your data model? Please use whatever tools you are comfortable with to answer this question and whatever flavor of SQL you are most familiar with. A github repo or gist is preferred.
+
+## Tables
+
+__Table 1: Requests__
+ - Requests
+ - Request_created_at
+
+__Table 2: Analyst Quality__
+ - Event_occured_at (Another option is Request but I am not sure if a Analyst can do anothr job for a request after their Quality_score has been changed; If the source to quality can be connected, then perhaps this column would nit be needed and a smaller table can be stored)
+ - Analyst
+ - Quality_score (Quality_score_sourcing & Quality_score_writing are equivalent in all observations)
+ 
+__Table 3: Jobs Available__
+ - Event_occured_at
+ - Total_jobs_available
+ - Analysts_available
+ - Analysts_occupied
+ - Job_type
+ - Number_available
+ 
+  For this table I would be converting the following column from wide format to long format
+     - Review_jobs_available
+     - Vetting_jobs_available
+     - Editing_jobs_available
+     - Sourcing_jobs_available
+     - Writing_jobs_available
+ 
+__Table 4: Job__
+ - Job
+ - Analyst
+ - Action
+ - Request
+ - Wait_time_min
+ 
+## Business Questions
+
+### How long does it take for activity (accepted job) to begin on a request?
+
+![Question1.png]()
+
+The average time for activity to begin on a request is about 69 minutes or a little more than an hour.
+
+### How long does it take for a job to be accepted or denied after it has been assigned?
+
+![Question2.png]()
+
+On average it only takes 54 seconds for a job to be accepted or declined after it has been assigned to an analyst.
+
+### How long does it take for a request to be completed?
+
+![Question3.png]()
+
+
+There is no indication of when an assignment is completed in this log or if the activity is the last activity. For my best guess at how to calculate this, I only used requests that were created before the events in the assignment logged were recorded. I used the max Event_occurred_at time as a best estimate to when the request was completed.As a result, I found that the average time for a request to be completed was 1212.9 minutes, about 20 hours.
+
+### How many analysts are there?
+
+![Question4.png]()
+
+There are 71 different analysts included in the assignment log.
+
+### What is the quality of the analsysts?
+
+![Question5.png]()
+
+The average quality of all the analysts in this data table is 3.089133.
+
+### How many jobs are available and how many analysts are occupied?
+
+![Question6.png]()
+
+On average there are about 5.38 more jobs available than analysts available, this is an indication that more analysts may be needed.
+
+### How many analysts work on a request?
+
+![Question7.png]()
+
+On average 4.054054 analysts work on a request.
+
+ 
+
 # Part 3: SQL
+
+## What are the problem(s) with this SQL query?
 
 ![Part3SQL.png](https://github.com/erikajane/Wonder_SQL_Task/blob/master/Images/Part3SQL.png)
 
+- __WHERE order.order_date >= '20090101'__
+    - In the orders table the format of the column order_date is, 'year-month-day'. The format of the date in the SQL query is 'yearmonthday'. These two formats do not match. This results in every row being returned that does not have a null value.
+- __SELECT ... SUM(COALESCE(orders.order_amt, 0)) AS total_2019__
+    - Using COALESCE does not make any sense in this scenario. The order of operations says the FROM and WHERE statements are executed before the SELECT statement. Therefore, there is no need to account for any null values in the orders_amt column because any rows that have null values through the join (Julie Peters) will be dropped during the WHERE statement because the date will be null as well. It would be simpler to use the statement __SUM(orders.orders_amt).
 
 
 
