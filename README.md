@@ -41,7 +41,7 @@ In order for this csv file to be converted into a SQL friendly data table, it wa
 ### Duplicates
 
 There were two sets of duplicates as seen below:
-![Duplicates.png]{}
+![Duplicates.png](https://github.com/erikajane/Wonder_SQL_Task/blob/master/Images/Duplicates.png)
 
 Duplicates were removed so the event only appeared once in the datatable. After removing the duplicates there are 789 rows in the Assignments table.
 
@@ -114,7 +114,7 @@ More analysts need to be editing than planning and vetting. More writing should 
 
 # Part 3: SQL
 
-![Part3SQL.png]{}
+![Part3SQL.png](https://github.com/erikajane/Wonder_SQL_Task/blob/master/Images/Part3SQL.png)
 
 
 
