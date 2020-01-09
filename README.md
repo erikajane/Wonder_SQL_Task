@@ -157,44 +157,44 @@ __Table 4: Job__
 
 ### How long does it take for activity (accepted job) to begin on a request?
 
-![Question1.png]()
+![Question1.png](https://github.com/erikajane/Wonder_SQL_Task/blob/master/Images/Question1.png)
 
 The average time for activity to begin on a request is about 69 minutes or a little more than an hour.
 
 ### How long does it take for a job to be accepted or denied after it has been assigned?
 
-![Question2.png]()
+![Question2.png](https://github.com/erikajane/Wonder_SQL_Task/blob/master/Images/Question2.png)
 
 On average it only takes 54 seconds for a job to be accepted or declined after it has been assigned to an analyst.
 
 ### How long does it take for a request to be completed?
 
-![Question3.png]()
+![Question3.png](https://github.com/erikajane/Wonder_SQL_Task/blob/master/Images/Question3.png)
 
 
 There is no indication of when an assignment is completed in this log or if the activity is the last activity. For my best guess at how to calculate this, I only used requests that were created before the events in the assignment logged were recorded. I used the max Event_occurred_at time as a best estimate to when the request was completed.As a result, I found that the average time for a request to be completed was 1212.9 minutes, about 20 hours.
 
 ### How many analysts are there?
 
-![Question4.png]()
+![Question4.png](https://github.com/erikajane/Wonder_SQL_Task/blob/master/Images/Question4.png)
 
 There are 71 different analysts included in the assignment log.
 
 ### What is the quality of the analsysts?
 
-![Question5.png]()
+![Question5.png](https://github.com/erikajane/Wonder_SQL_Task/blob/master/Images/Question5.png)
 
 The average quality of all the analysts in this data table is 3.089133.
 
 ### How many jobs are available and how many analysts are occupied?
 
-![Question6.png]()
+![Question6.png](https://github.com/erikajane/Wonder_SQL_Task/blob/master/Images/Question6.png)
 
 On average there are about 5.38 more jobs available than analysts available, this is an indication that more analysts may be needed.
 
 ### How many analysts work on a request?
 
-![Question7.png]()
+![Question7.png](https://github.com/erikajane/Wonder_SQL_Task/blob/master/Images/Question7.png)
 
 On average 4.054054 analysts work on a request.
 
