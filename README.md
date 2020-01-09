@@ -116,6 +116,10 @@ More analysts need to be editing than planning and vetting. More writing should 
 
 ### Requests
 
+There are 74 different requests in this assignment log.
+
+On average, 5 analysts work on each request.
+
 # Part 2: Data Modeling
 
 ## Assuming we are starting with the data set from Part 1 as our raw data table, how would you model this data in a data warehouse for analytical purposes? What tables would you create? What kinds of questions do you imagine business users would want to ask of this data, and how would they express them in your data model? Please use whatever tools you are comfortable with to answer this question and whatever flavor of SQL you are most familiar with. A github repo or gist is preferred.
@@ -211,11 +215,3 @@ On average 4.054054 analysts work on a request.
 - __SELECT ... SUM(COALESCE(orders.order_amt, 0)) AS total_2019__
     - Using COALESCE does not make any sense in this scenario. The order of operations says the FROM and WHERE statements are executed before the SELECT statement. Therefore, there is no need to account for any null values in the orders_amt column because any rows that have null values through the join (Julie Peters) will be dropped during the WHERE statement because the date will be null as well. It would be simpler to use the statement __SUM(orders.orders_amt).
 
-
-
-## Suggestions:
-- Log when an assignment is completed
-- Look into either missing events or inaccurate event time recording
-
-## Questions:
-- What
